@@ -1,0 +1,40 @@
+.menubar-container {
+    margin-left: 150px;
+    flex: 3;
+    height: calc(100vh - 50px);
+    background-color: white;
+    opacity: 0.5;
+
+    overflow-y: scroll;
+
+    .menu-list {
+        
+    }
+
+    .menu-items {
+        font-size: 27px;
+        font-weight: 500;
+        padding: 10px 20px;
+        background-color: rgb(175, 172, 172);
+        border: solid 1px black;
+        cursor: pointer;
+
+        &:hover
+        {
+            background-color: rgb(134, 29, 29);
+            color: white;
+        }
+    }
+}
+
+::-webkit-scrollbar {
+    width: 5px;
+}
+
+::-webkit-scrollbar-track {
+    background-color: grey;
+}
+
+::-webkit-scrollbar-thumb {
+    background-color: rgb(134, 29, 29);
+}
