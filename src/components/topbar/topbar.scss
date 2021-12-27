@@ -7,11 +7,12 @@
     top: 0;
     left: 0;
     position: fixed;
+    z-index: 9999;
 
     .left-topbar {
         flex: 3; 
         .main-logo {
-            font-size: 25px;
+            font-size: 30px;
             margin-left: 200px;
             color: rgb(212, 212, 212);
             font-weight: 550;

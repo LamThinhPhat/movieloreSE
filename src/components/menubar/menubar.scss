@@ -3,7 +3,7 @@
     flex: 3;
     height: calc(100vh - 50px);
     background-color: white;
-    opacity: 0.5;
+    opacity: 0.75;
 
     overflow-y: scroll;
 
@@ -12,7 +12,8 @@
     }
 
     .menu-items {
-        font-size: 27px;
+        font-size: 25px;
+        text-shadow: 0.5px 0px;
         font-weight: 500;
         padding: 10px 20px;
         background-color: rgb(175, 172, 172);

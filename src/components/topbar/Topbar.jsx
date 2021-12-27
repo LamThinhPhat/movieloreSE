@@ -1,4 +1,4 @@
-import { Search, Bookmark, Notifications } from '@material-ui/icons'
+import { Search, PostAdd, Notifications } from '@material-ui/icons'
 import "./topbar.scss"
 
 function Topbar() {
@@ -15,7 +15,7 @@ function Topbar() {
             </div>
             <div className="right-topbar">
                 <div className="topbar-icon">
-                    <Bookmark />
+                    <PostAdd />
                 </div>
                 <div className="topbar-icon">
                     <Notifications />
