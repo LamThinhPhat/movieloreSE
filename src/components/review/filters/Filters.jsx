@@ -2,12 +2,12 @@ import './filters.scss'
 import { FilterList } from '@material-ui/icons'
 import { useState } from 'react'
 import { useContext } from "react"
-import { MovieContext } from "../../../store"
+import { Context } from "../../../store"
 import { actions } from "../../../store"
 
 
 function Filters(props) {
-    const { state, dispatch } = useContext(MovieContext);
+    const { state, dispatch } = useContext(Context.movieContext);
     const [isShow, setIsShow] = useState(false);
 
     const handleChooseYear = (event) => {

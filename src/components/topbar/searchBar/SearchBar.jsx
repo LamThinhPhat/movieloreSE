@@ -1,12 +1,12 @@
 import './searchBar.scss'
 import { Search } from '@material-ui/icons'
 import { useContext } from 'react'
-import { MovieContext } from "../../../store"
+import { Context } from "../../../store"
 import { actions } from '../../../store'
 import { useHistory } from 'react-router-dom'
 
 function SearchBar() {
-    const { dispatch } = useContext(MovieContext);
+    const { dispatch } = useContext(Context.movieContext);
     const history = useHistory();
 
     const handleSeachMovies = (event) => {

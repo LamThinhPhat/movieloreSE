@@ -1,13 +1,15 @@
 import React from 'react';
 import ReactDOM from 'react-dom';
 import App from './App';
-import { MovieProvider } from './store'
+import { MovieProvider, UserProvider } from './store'
 
 ReactDOM.render(
   <React.StrictMode>
-    <MovieProvider>
-      <App />
-    </MovieProvider>
+    <UserProvider>
+      <MovieProvider>
+        <App />
+      </MovieProvider>
+    </UserProvider>
   </React.StrictMode>,
   document.getElementById('root')
 );

@@ -1,10 +1,10 @@
 import "./menubar.scss"
 import { actions } from "../../store";
 import { useContext } from 'react';
-import { MovieContext } from "../../store";
+import { Context } from "../../store";
 
 function Menubar() {
-    const { state, dispatch } = useContext(MovieContext);
+    const { state, dispatch } = useContext(Context.movieContext);
 
     const gernes = ['Anime', 'Âm nhạc', 'Bí ẩn', 'Chiến tranh', 'Chính kịch', 'Drama',
         'Hoạt hình', 'Gia đình', 'Giật Gân', 'Hài', 'Hành động', 'Viễn tưởng', 'Kinh dị',

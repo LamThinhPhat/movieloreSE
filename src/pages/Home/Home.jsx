@@ -4,6 +4,8 @@ import Menubar from "../../components/menubar/Menubar"
 import Review from '../../components/review/Review'
 import AddPost from "../../components/addPost/AddPost"
 import DetailPost from "../../components/detailPost/DetailPost"
+import Login from "../../components/Login/Login"
+import Register from "../../components/Register/Register"
 import {
     BrowserRouter as Router,
     Switch,
@@ -11,28 +13,53 @@ import {
 } from 'react-router-dom'
 
 function Home() {
+
     return (
         <Router>
-            <div className="home-background">
-                <Topbar />
-                <div className="home-container">
-                    <Switch>
-                        <Route path="/" exact>
+
+            <Switch>
+                <Route path="/" exact>
+                    <div className="home-background">
+                        <Topbar />
+                        <div className="home-container">
                             <Menubar />
                             <Review />
-                        </Route>
+                        </div>
+                    </div>
+                </Route>
 
-                        <Route path="/add">
+                <Route path="/add">
+                    <div className="home-background">
+                        <Topbar />
+                        <div className="home-container">
                             <AddPost />
-                        </Route>
+                        </div>
+                    </div>
+                </Route>
 
-                        <Route path="/detail/:id">
+                <Route path="/detail/:id">
+                    <div className="home-background">
+                        <Topbar />
+                        <div className="home-container">
                             <DetailPost />
-                        </Route>
+                        </div>
+                    </div>
+                </Route>
 
-                    </Switch>
-                </div>
-            </div>
+                <Route path="/login">
+                    <div className="home-background" style={{ display: "flex", justifyContent: "center", alignItems: "center" }}>
+                        <Login />
+                    </div>
+                </Route>
+
+                <Route path="/register">
+                    <div className="home-background" style={{ display: "flex", justifyContent: "center", alignItems: "center" }}>
+                        <Register />
+                    </div>
+                </Route>
+
+            </Switch>
+
         </Router>
     )
 }

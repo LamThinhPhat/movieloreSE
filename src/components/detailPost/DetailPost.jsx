@@ -2,14 +2,14 @@ import './detailPost.scss'
 import Comment from './comment/Comment'
 import { useParams, useHistory } from 'react-router-dom'
 import { useContext, useState } from 'react'
-import { MovieContext } from '../../store'
+import { Context } from '../../store'
 import { Settings, Grade } from '@material-ui/icons'
 
 function DetailPost() {
     const { id } = useParams();
-    const { state } = useContext(MovieContext);
+    const { state } = useContext(Context.movieContext);
     const history = useHistory();
-    const movie = state.movies.find(item => item.id === Number.parseInt(id));
+    const movie = state.movies.find(item => item._id === id);
     const [isShowOption, setIsShowOption] = useState(false);
     const [isShowTrailer, SetIsShowTrailer] = useState(false);
 
