@@ -8,34 +8,27 @@
     overflow-y: scroll;
 
     .menu-list {
-        
-    }
+        .menu-items {
+            font-size: 23px;
+            text-shadow: 0.5px 0px;
+            font-weight: 500;
+            padding: 10px 20px;
+            background-color: rgb(175, 172, 172);
+            border: solid 1px black;
+            cursor: pointer;
 
-    .menu-items {
-        font-size: 25px;
-        text-shadow: 0.5px 0px;
-        font-weight: 500;
-        padding: 10px 20px;
-        background-color: rgb(175, 172, 172);
-        border: solid 1px black;
-        cursor: pointer;
-
-        &:hover
-        {
-            background-color: rgb(134, 29, 29);
-            color: white;
+            
+    
+            &:hover
+            {
+                background-color: #b88e3f;
+                color: white;
+            }
         }
     }
 }
 
-::-webkit-scrollbar {
-    width: 5px;
-}
-
-::-webkit-scrollbar-track {
-    background-color: grey;
-}
-
-::-webkit-scrollbar-thumb {
-    background-color: rgb(134, 29, 29);
+.active-section {
+    background-color: #b88e3f !important;
+    color: white;
 }

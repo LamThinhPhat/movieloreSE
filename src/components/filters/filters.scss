@@ -1,0 +1,62 @@
+.filter {
+    display: inline-block;
+    margin-left: 30px;
+    line-height: 30px;  
+    border: none;
+    border-radius: 5px;
+
+    .filter-icon {
+        font-size: 16px;
+    }
+    .filter-text {
+        padding-left: 5px;
+        font-size: 25px; 
+    }
+
+    &:hover {
+        color: black;
+        background-color: white;
+    }
+}
+
+.is-show {
+    color: black;
+    background-color: rgba(255, 255, 255, 0.822);
+}
+
+.not-show {
+    background-color: rgba(8, 8, 8, 0.39);
+    color: rgb(255, 255, 255);
+}
+
+.filter-list {
+    display: flex;
+    align-items: center;
+    background-color: #00000098;
+    justify-content: space-evenly;
+    height: 100px;
+    margin: 10px 0;
+
+    .filter-title {
+        .title-text {
+            font-size: 20px;
+            color: rgb(255, 255, 255)
+        }
+    
+        .filter-dropbox {
+            margin-left: 10px;
+            width:150px;
+            height:40px;
+            padding:5px;
+            background-color:#506264bb;
+            color:#fffefe;
+            font-size: 17px;
+            
+        }
+
+        option {
+            font-size: 17px;
+        }
+    }
+    
+}
