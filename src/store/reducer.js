@@ -1,6 +1,6 @@
 import {
     LOAD_MOVIES_DATA, FILTER_MOVIES_GERNE, FILTER_MOVIES_YEAR, FILTER_MOVIES_TYPE,
-    FILTER_MOVIES_COUNTRY, SEARCH_BAR_TRUE, SEARCH_BAR_FALSE, RESET_POST_LIST
+    FILTER_MOVIES_COUNTRY, SEARCH_BAR_TRUE, SEARCH_BAR_FALSE, RESET_POST_LIST, ADD_NEW_REVIEW
 } from './constants';
 
 const initState = {
@@ -127,6 +127,22 @@ function reducer(state, action) {
                 type: 'Tất cả',
                 country: 'Tất cả',
             }
+        case ADD_NEW_REVIEW: {
+            let temp = state.movies;
+            temp.unshift(action.payload);
+            return {
+                ...state,
+                movies: temp,
+                filter: temp,
+                isSearch: false,
+                gerne: [],
+                searchFilter: '',
+                year: 'Tất cả',
+                type: 'Tất cả',
+                country: 'Tất cả',
+            }
+        }
+
         default:
             throw new Error('Invalid action')
     }

@@ -1,6 +1,6 @@
 import {
     LOAD_MOVIES_DATA, FILTER_MOVIES_GERNE, FILTER_MOVIES_YEAR, FILTER_MOVIES_TYPE,
-    FILTER_MOVIES_COUNTRY, SEARCH_BAR_TRUE, SEARCH_BAR_FALSE, RESET_POST_LIST
+    FILTER_MOVIES_COUNTRY, SEARCH_BAR_TRUE, SEARCH_BAR_FALSE, RESET_POST_LIST, ADD_NEW_REVIEW
 } from './constants';
 
 export const loadMoviesDate = payload => ({
@@ -39,4 +39,9 @@ export const noSearch = () => ({
 
 export const resetPostList = () => ({
     type: RESET_POST_LIST
+})
+
+export const addNewReview = payload => ({
+    type: ADD_NEW_REVIEW,
+    payload
 })

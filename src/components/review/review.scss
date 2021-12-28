@@ -1,5 +1,5 @@
 .review-container {
-    margin-right: 200px;
+    margin-right: 100px;
     flex: 13;
     background-color: rgba(94, 94, 94, 0.808);
     height: calc(100vh - 50px);
@@ -17,4 +17,11 @@
 ::-webkit-scrollbar-thumb {
     background-color: rgba(0, 0, 0, 0.568);
 }
+
+@media (max-width: 1023px) {
+    .review-container {
+        margin-right: 0px;
+    }
+}
+
 

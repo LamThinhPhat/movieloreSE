@@ -1,6 +1,6 @@
 import "./review.scss";
-import Filters from '../filters/Filters'
-import PostList from '../postList/PostList'
+import Filters from '../review/filters/Filters'
+import PostList from '../review/postList/PostList'
 
 function Review() {
     return (

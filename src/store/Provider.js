@@ -11,7 +11,10 @@ function Provider(props) {
         axios.get('http://localhost:4000/movies')
             .then(function (res) {
                 let data = res && res.data ? res.data : [];
-                dispatch(actions.loadMoviesDate(data));
+                dispatch(actions.loadMoviesDate(data.reverse()));
+            })
+            .catch(function (e) {
+                console.log(e);
             })
     }, [])
 

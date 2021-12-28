@@ -1,16 +1,16 @@
 .menubar-container {
-    margin-left: 150px;
+    margin-left: 100px;
     flex: 3;
     height: calc(100vh - 50px);
     background-color: white;
     opacity: 0.75;
+    overflow-y: scroll;
+
     -moz-user-select: none;  
     -webkit-user-select: none;  
     -ms-user-select: none;  
     -o-user-select: none;  
     user-select: none;
-
-    overflow-y: scroll;
 
     .menu-list {
         .menu-items {
@@ -35,3 +35,10 @@
     background-color: #775e2f !important;
     color: white;
 }
+
+@media (max-width: 1023px) {
+    .menubar-container {
+        margin-left: 0px;
+    }
+}
+

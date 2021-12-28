@@ -111,6 +111,12 @@ textarea {
                     object-fit: cover;
                 }
             }
+
+            .first-type {
+                .first-type-label {
+                    margin-top: 0.5em;
+                }
+            }
         }
 
         .second-block {        
@@ -126,7 +132,7 @@ textarea {
             .gerne-tag {
                 display: inline-block;
                 border: 1px solid black;
-                min-width: 100px;
+                min-width: 110px;
                 margin: 3px 5px;
                 text-align: center;  
                 cursor: pointer;
@@ -134,12 +140,12 @@ textarea {
 
                 &:hover {
                     background-color: rgba(0, 0, 0, 0.2);
-                }
+                }    
+            }
 
-                .gerne-action {
-                    background-color: rgba(32, 92, 94, 0.75);
-                    color: white;
-                }
+            .gerne-active {
+                background-color: rgba(32, 92, 94, 0.75);
+                color: white;
             }
         }
 
@@ -167,14 +173,17 @@ textarea {
                 margin-top: 16px;
 
                 .review-btn {
-                    // border: none;
                     text-align: center;
                     height: 30px;
-                    font-weight: 600;
+                    font-weight: bold;
                     padding: 2px 5px;
                     width: 130px;
                     outline: none;
                     font-size: 16px;
+
+                    &::placeholder { 
+                        font-weight: normal;
+                      }
                 }
 
                 #review-input {
@@ -243,12 +252,19 @@ textarea {
         .submit-block {
             margin-top: 16px;
             padding: 0px 16px;
-            display: flex;
-            justify-content: right;
+            left: -500px;
             padding-bottom: 16px;
             margin-right: 30px;
+            display: flex;
+            flex-flow: column;
+            align-items: flex-end;
+
+            .summit-error {
+                color: #db382c;
+            }
 
             .submit-btn {
+                right: 0;
                 font-size: 25px;
                 height: 60px;
                 width: 150px;
@@ -267,6 +283,7 @@ textarea {
 .first-type > .first-type-tags:first-child > label {
     width: 140px;
 }
+
 
 ::-webkit-scrollbar {
     width: 5px;
