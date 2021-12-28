@@ -3,6 +3,7 @@ import { Grade } from '@material-ui/icons'
 import { Link } from 'react-router-dom'
 
 function Post(props) {
+
     function getPosition(string, subString, index) {
         return string.split(subString, index).join(subString).length;
     }

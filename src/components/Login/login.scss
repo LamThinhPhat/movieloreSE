@@ -66,7 +66,7 @@
     .login-button {
         display: flex;
         justify-content: space-around;
-        margin: 2em 0;
+        margin-bottom: 2em;
 
         button {
             outline: none;
@@ -81,10 +81,22 @@
             
             &:hover {
             opacity: 0.5;
-        }
+            }
 
+        }    
     }
 
-        
+    #login-alert {
+        margin-top: 2em;
+        margin-bottom: 0.5em;
+        color: rgb(192, 17, 17);
+        text-align: right;
     }
+
+    .login-loader-containter {
+        display: flex;
+        justify-content: center;
+        margin-bottom: 1em;
+    }
+
 }

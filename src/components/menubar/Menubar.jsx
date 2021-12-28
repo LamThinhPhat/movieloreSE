@@ -1,5 +1,5 @@
 import "./menubar.scss"
-import { actions } from "../../store";
+import { movieActions } from "../../store";
 import { useContext } from 'react';
 import { Context } from "../../store";
 
@@ -22,7 +22,7 @@ function Menubar() {
             }
         }
 
-        dispatch(actions.setFilterGerne(gerneFilter));
+        dispatch(movieActions.setFilterGerne(gerneFilter));
     }
 
     return (

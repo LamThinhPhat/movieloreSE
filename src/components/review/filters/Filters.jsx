@@ -3,7 +3,7 @@ import { FilterList } from '@material-ui/icons'
 import { useState } from 'react'
 import { useContext } from "react"
 import { Context } from "../../../store"
-import { actions } from "../../../store"
+import { movieActions } from "../../../store"
 
 
 function Filters(props) {
@@ -11,15 +11,15 @@ function Filters(props) {
     const [isShow, setIsShow] = useState(false);
 
     const handleChooseYear = (event) => {
-        dispatch(actions.setFilterYear(event.target.value))
+        dispatch(movieActions.setFilterYear(event.target.value))
     }
 
     const handleChooseType = (event) => {
-        dispatch(actions.setFilterType(event.target.value))
+        dispatch(movieActions.setFilterType(event.target.value))
     }
 
     const handleChooseCountry = (event) => {
-        dispatch(actions.setFilterCountry(event.target.value))
+        dispatch(movieActions.setFilterCountry(event.target.value))
     }
 
     const countrys = [

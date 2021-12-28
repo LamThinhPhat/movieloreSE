@@ -17,13 +17,12 @@
             font-size: 23px;
             text-shadow: 0.5px 0px;
             font-weight: 500;
-            padding: 10px 20px;
+            padding: 0.5em 1em;
             background-color: rgb(175, 172, 172);
             border: solid 1px black;
             cursor: pointer;
 
-            &:hover
-            {
+            &:hover {
                 background-color: #b88e3f;
                 color: white;
             }

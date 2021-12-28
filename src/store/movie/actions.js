@@ -3,8 +3,6 @@ import {
     FILTER_MOVIES_COUNTRY, SEARCH_BAR_TRUE, SEARCH_BAR_FALSE, RESET_POST_LIST, ADD_NEW_REVIEW
 } from './constants';
 
-
-//for movie
 export const loadMoviesDate = payload => ({
     type: LOAD_MOVIES_DATA,
     payload
@@ -47,6 +45,3 @@ export const addNewReview = payload => ({
     type: ADD_NEW_REVIEW,
     payload
 })
-
-
-//for user

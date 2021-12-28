@@ -3,14 +3,20 @@ import "./topbar.scss"
 import SearchBar from "./searchBar/SearchBar"
 import { Link } from 'react-router-dom'
 import { useContext } from "react"
-import { Context } from "../../store"
-import { actions } from '../../store'
+import { Context, movieActions } from "../../store"
+import { userActions } from '../../store'
+
 
 function Topbar() {
     const { dispatch } = useContext(Context.movieContext);
+    const { userState, userDispatch } = useContext(Context.userContext);
 
     const handleResetPost = () => {
-        dispatch(actions.resetPostList());
+        dispatch(movieActions.resetPostList());
+    }
+
+    const handleLogOut = () => {
+        userDispatch(userActions.logOut());
     }
 
     return (
@@ -22,31 +28,33 @@ function Topbar() {
                 <SearchBar />
             </div>
             <div className="right-topbar">
-                <div className="topbar-icon">
+                {userState.role && <div className="topbar-icon">
                     <Link to="/add" className="add-icon"><PostAdd /></Link>
-                </div>
-                <div className="topbar-icon">
+                </div>}
+                {userState.name && <div className={userState.role ? "topbar-icon" : "topbar-icon notic-icon"}>
                     <Notifications />
                     <span className="topbar-icon-badge">2</span>
                 </div>
-                <div className="topbar-login">
-                    <span><Face className="topbar-user-icon" /></span>
-                    <span className="topbar-user-name">Nhân</span>
+                }
 
-                    {/* dropbox */}
-                    <div className="topbar-login-dropbox">
-                        <div className="topbar-dropbox-item">Sửa thông tin</div>
-                        <div className="topbar-dropbox-item">Đổi mật khẩu</div>
-                        <div className="topbar-dropbox-item">Yêu thích</div>
-                        <div className="topbar-dropbox-item">Đăng xuất</div>
+                {userState.name ?
+                    <div className="topbar-login">
+                        <span><Face className="topbar-user-icon" /></span>
+                        <span className="topbar-user-name">{userState.name}</span>
+
+                        {/* dropbox */}
+                        <div className="topbar-login-dropbox">
+                            <Link to='/profile' className="topbar-dropbox-item">Sửa thông tin</Link>
+                            <Link to='/profile/password' className="topbar-dropbox-item">Đổi mật khẩu</Link>
+                            <Link to='/profile/favorite' className="topbar-dropbox-item">Yêu thích</Link>
+                            <Link to='#' className="topbar-dropbox-item" onClick={handleLogOut}>Đăng xuất</Link>
+                        </div>
                     </div>
-                </div>
-
-                <div className="topbar-register">
-                    <Link to="/login" className="topbar-register-title">Đăng nhập</Link>
-                </div>
-
-
+                    :
+                    <div className="topbar-register">
+                        <Link to="/login" className="topbar-register-title">Đăng nhập</Link>
+                    </div>
+                }
 
             </div>
         </div>

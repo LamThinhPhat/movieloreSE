@@ -197,10 +197,13 @@ textarea {
                 justify-content: right;
                 margin-top: 5px;
 
-                .review-remove-btb {
+                .review-remove-btn {
                     height: 40px;
                     width: 110px;
-                    background-color: #db382c;
+                    // background-color: #e93d31;
+                    // background-image: linear-gradient(to bottom right, rgb(196, 102, 102), rgb(201, 33, 27));
+                    border: 2px solid rgb(153, 35, 35);
+                    border-radius: 5px;
                     display: flex;
                     justify-content: center;
                     align-items: center; 
@@ -209,13 +212,16 @@ textarea {
                     &:hover {
                         opacity: 0.8;  
                         color: white; 
+                        background-color: rgb(153, 35, 35);
                     }
                 }
 
                 .review-add-btn {
                     height: 40px;
                     width: 110px;
-                    background-color: rgba(32, 94, 45, 0.75);
+                    // background-color: rgba(32, 94, 45, 0.75);
+                    border: 2px solid rgba(32, 94, 45, 0.75);
+                    border-radius: 5px;
                     display: flex;
                     justify-content: center;
                     align-items: center;
@@ -226,6 +232,7 @@ textarea {
                     &:hover {
                         opacity: 0.8;
                         color: white; 
+                        background-color: rgba(32, 94, 45, 0.75);
                     }
                 }             
             }
@@ -270,6 +277,7 @@ textarea {
                 width: 150px;
                 background-color: rgba(32, 92, 94, 0.75);
                 border: none;
+                border-radius: 5px;
 
                 &:hover {
                     color: white;

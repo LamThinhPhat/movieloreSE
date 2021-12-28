@@ -8,6 +8,7 @@ import { Settings, Grade } from '@material-ui/icons'
 function DetailPost() {
     const { id } = useParams();
     const { state } = useContext(Context.movieContext);
+    const { userState } = useContext(Context.userContext);
     const history = useHistory();
     const movie = state.movies.find(item => item._id === id);
     const [isShowOption, setIsShowOption] = useState(false);
@@ -34,7 +35,7 @@ function DetailPost() {
         <>
             {movie && <div className="detail-container">
                 <div className="detail-first-block">
-                    <div className="detail-option-icon" onClick={handleShowOption}><Settings /></div>
+                    {userState.role && <div className="detail-option-icon" onClick={handleShowOption}><Settings /></div>}
                     {isShowOption && <div className="detail-option-dropdown">
                         <div className="option-item">Sửa đổi</div>
                         <div className="option-item" onClick={handleDeleteReview}>Xóa</div>

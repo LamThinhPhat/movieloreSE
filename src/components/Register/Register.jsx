@@ -2,11 +2,9 @@ import './register.scss'
 import { useHistory } from 'react-router-dom'
 import { useState } from 'react'
 import axios from 'axios'
-import bcrypt from 'bcryptjs'
 
 function Register() {
     const history = useHistory();
-    const salt = bcrypt.genSaltSync(10);
     const [isLoading, setIsLoading] = useState(false);
 
     const [info, setInfo] = useState({
@@ -52,10 +50,8 @@ function Register() {
             return;
         }
 
-        data.password = bcrypt.hashSync(info.password, salt)
-
         axios({
-            url: 'http://localhost:4000/user',
+            url: 'https://movielore-database.herokuapp.com/user',
             method: 'POST',
             data
         })
@@ -91,13 +87,18 @@ function Register() {
                 <input type="password" id="register-rePassword-input" name="rePassword" value={info.rePassword} onChange={(e) => setInfo({ ...info, rePassword: e.target.value })} autoComplete="on" required />
 
                 <div id="register-alert">{warn}</div>
-                <div className="register-button">
-                    <button onClick={() => history.goBack()}>Quay lại</button>
-                    <button value="submit">Đăng ký</button>
-                </div>
-                <div className="register-loader-containter">
-                    {isLoading && <div className="loader"></div>}
-                </div>
+                {isLoading ?
+
+                    <div className="register-loader-containter">
+                        <div className="loader"></div>
+                    </div>
+                    :
+                    <div className="register-button">
+                        <button onClick={() => history.goBack()}>Quay lại</button>
+                        <button value="submit">Đăng ký</button>
+                    </div>
+                }
+
             </form>
         </div>
     )
