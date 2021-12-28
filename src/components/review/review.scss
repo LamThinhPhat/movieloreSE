@@ -4,12 +4,6 @@
     background-color: rgba(94, 94, 94, 0.808);
     height: calc(100vh - 50px);
     overflow-y: scroll;
-
-    .post-list {
-        display: flex;
-        flex-direction: row;
-        flex-wrap: wrap;
-    }
 }
 
 ::-webkit-scrollbar {

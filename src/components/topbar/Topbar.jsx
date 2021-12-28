@@ -1,5 +1,6 @@
-import { Search, PostAdd, Notifications } from '@material-ui/icons'
+import { PostAdd, Notifications } from '@material-ui/icons'
 import "./topbar.scss"
+import SearchBar from "../searchBar/SearchBar"
 
 function Topbar() {
     return (
@@ -8,10 +9,7 @@ function Topbar() {
                 <span className="main-logo">MovieLore</span>
             </div>
             <div className="middle-topbar">
-                <div className="search-bar">
-                    <Search className="search-icon" />
-                    <input className="seach-input" type="text" placeholder="Tìm kiếm..." />
-                </div>
+                <SearchBar />
             </div>
             <div className="right-topbar">
                 <div className="topbar-icon">

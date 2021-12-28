@@ -1,18 +1,31 @@
 import './filters.scss'
 import { FilterList } from '@material-ui/icons'
 import { useState } from 'react'
+import { useContext } from "react"
+import { MovieContext } from "../../store"
+import { actions } from '../../store'
 
-function Filters() {
+
+function Filters(props) {
+    const { state, dispatch } = useContext(MovieContext);
     const [isShow, setIsShow] = useState(false);
 
-    const handleShowFilters = () => {
-        setIsShow(!isShow);
+    const handleChooseYear = (event) => {
+        dispatch(actions.setFilterYear(event.target.value))
     }
 
-    const country = [
+    const handleChooseType = (event) => {
+        dispatch(actions.setFilterType(event.target.value))
+    }
+
+    const handleChooseCountry = (event) => {
+        dispatch(actions.setFilterCountry(event.target.value))
+    }
+
+    const countrys = [
         {
             id: 'all',
-            title: 'All'
+            title: 'Tất cả'
         },
         {
             id: 'vietnam',
@@ -47,23 +60,19 @@ function Filters() {
             title: 'Anh'
         },
         {
-            id: 'italy',
-            title: 'Ý'
-        },
-        {
             id: 'hongkong',
             title: 'Hồng Kông'
         }
     ]
 
-    const type = [
+    const types = [
         {
             id: 'all',
-            title: 'All'
+            title: 'Tất cả'
         },
         {
-            id: '15+',
-            title: '15+'
+            id: 'every',
+            title: 'Mọi lứa tuổi'
         },
         {
             id: 'C13',
@@ -78,31 +87,15 @@ function Filters() {
             title: 'C18'
         },
         {
-            id: 'NC16',
-            title: 'NC16'
-        },
-        {
-            id: 'P',
-            title: 'P'
-        },
-        {
-            id: 'PG',
-            title: 'PG'
-        },
-        {
-            id: 'PG-13',
-            title: 'PG-13'
-        },
-        {
             id: 'R',
             title: 'R'
         }
     ]
 
-    const year = [
+    const years = [
         {
             id: 'all',
-            title: 'All'
+            title: 'Tất cả'
         },
         {
             id: '1990',
@@ -237,7 +230,7 @@ function Filters() {
 
     return (
         <>
-            <button className={isShow ? "filter is-show" : "filter not-show"} onClick={() => handleShowFilters()}>
+            <button className={isShow ? "filter is-show" : "filter not-show"} onClick={() => setIsShow(!isShow)}>
                 <FilterList className="filter-icon" />
                 <span className="filter-text">Bộ lọc</span>
             </button>
@@ -246,25 +239,22 @@ function Filters() {
                 <div className="filter-list">
                     <div className="filter-title">
                         <span className="title-text">Năm phát hành:</span>
-                        <select className="filter-dropbox">
-                            {year.map(item => <option value={item.id} key={item.id}>{item.title}</option>)}
+                        <select className="filter-dropbox" value={state.year} onChange={(event) => handleChooseYear(event)}>
+                            {years.map(item => <option value={item.title} key={item.id}>{item.title}</option>)}
                         </select>
                     </div>
                     <div className="filter-title">
                         <span className="title-text">Phân loại:</span>
-                        <select className="filter-dropbox">
-                            {type.map(item => <option value={item.id} key={item.id}>{item.title}</option>)}
+                        <select className="filter-dropbox" value={state.type} onChange={(event) => handleChooseType(event)}>
+                            {types.map(item => <option value={item.title} key={item.id}>{item.title}</option>)}
                         </select>
                     </div>
                     <div className="filter-title">
                         <span className="title-text">Quốc gia:</span>
-                        <select className="filter-dropbox">
-                            {country.map(item => <option value={item.id} key={item.id}>{item.title}</option>)}
+                        <select className="filter-dropbox" value={state.country} onChange={(event) => handleChooseCountry(event)}>
+                            {countrys.map(item => <option value={item.title} key={item.id}>{item.title}</option>)}
                         </select>
                     </div>
-
-
-
                 </div>
             }
         </>
@@ -272,3 +262,4 @@ function Filters() {
 }
 
 export default Filters;
+

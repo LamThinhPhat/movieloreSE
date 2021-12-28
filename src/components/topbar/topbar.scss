@@ -26,32 +26,6 @@
 
     .middle-topbar {
         flex: 4;
-        .search-bar {
-            width: 100%;
-            background-color: white;
-            border-radius: 30px;
-            display: flex;
-            align-items: center;
-            
-            .search-icon {
-                font-size: 30px;
-                margin: 0 10px;
-            }
-
-            .seach-input {
-                border: none;
-                width: 80%;
-                font-size: 20px;
-
-                &:focus {
-                    outline: none;
-                }
-            }
-        }
-    }
-
-    .have-notification {
-        color: white;
     }
 
     .right-topbar {
