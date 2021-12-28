@@ -34,10 +34,15 @@ function Login() {
                     return;
                 } else {
                     userDispatch(userActions.StoreAccount(res.data));
-                    history.push('/')
+                    history.goBack();
                 }
             })
-            .catch(error => console.log(error))
+            .catch(error => {
+                console.log(error)
+                setIsLoading(false);
+                setWarn('Lỗi hệ thống, mời thử lại');
+                setTimeout(() => setWarn(''), 3000);
+            })
     }
 
     return (
@@ -60,7 +65,7 @@ function Login() {
                     :
                     <div className="login-button">
                         <button onClick={() => history.goBack()}>Quay lại</button>
-                        <button value="Submit">Đăng nhập</button>
+                        <button value="submit">Đăng nhập</button>
                     </div>}
             </form>
             <p>Hoặc</p>

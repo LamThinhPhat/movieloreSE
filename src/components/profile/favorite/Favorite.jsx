@@ -1,8 +1,11 @@
 import './favorite.scss'
+import PostList from '../../review/postList/PostList';
 
 function Favorite() {
     return (
-        <h1>hello from favorite</h1>
+        <div className="favorite-container">
+            <PostList favorite={true} />
+        </div>
     )
 }
 

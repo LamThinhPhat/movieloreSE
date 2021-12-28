@@ -5,7 +5,7 @@ import PostList from '../review/postList/PostList'
 function Review() {
     return (
         <div className="review-container">
-            <Filters />
+            <Filters favorite={false} />
             <PostList />
         </div>
     )

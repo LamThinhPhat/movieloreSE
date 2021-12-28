@@ -14,7 +14,7 @@ textarea {
     resize: none;
 }
 
-.add-post-container { 
+.edit-post-container { 
     margin-left: 150px;
     margin-right: 200px;
     height: calc(100vh - 50px);
@@ -270,19 +270,33 @@ textarea {
                 color: #b4271d;
             }
 
-            .submit-btn {
-                right: 0;
-                font-size: 25px;
-                height: 60px;
-                width: 150px;
-                background-color: rgba(32, 92, 94, 0.75);
-                border: none;
-                border-radius: 5px;
+            .edit-btn-group {
+                .btn {
+                    right: 0;
+                    font-size: 25px;
+                    height: 2.3em;
+                    width: 6em;
+                    background-color: rgba(32, 92, 94, 0.75);
+                    border: none;
+                    border-radius: 5px;
 
-                &:hover {
-                    color: white;
-                    opacity: 0.7;
+                    &:hover {
+                        color: white;
+                        opacity: 0.7;
+                    }
                 }
+
+                .btn-cancle {
+                    margin-right: 1em;
+                    background-color: white;
+
+                    &:hover {
+                        color: black;
+                        opacity: 0.7;
+                    }
+                }
+
+                
             }
         }
     }
