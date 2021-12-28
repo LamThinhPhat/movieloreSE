@@ -17,6 +17,7 @@
             color: rgb(212, 212, 212);
             font-weight: 550;
             cursor: pointer;
+            text-decoration: none;
 
             &:hover {
                 opacity: 0.7;
@@ -38,6 +39,14 @@
             margin: 0 10px;
             position: relative;
             cursor: pointer;
+
+            .add-icon {
+                color: black;
+
+                &:hover {
+                    color: white;
+                }
+            }
             
             &:hover {
                 color: white;

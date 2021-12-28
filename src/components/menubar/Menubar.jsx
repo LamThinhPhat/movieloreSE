@@ -6,7 +6,7 @@ import { MovieContext } from "../../store";
 function Menubar() {
     const { state, dispatch } = useContext(MovieContext);
 
-    const gerne = ['Anime', 'Âm nhạc', 'Bí ẩn', 'Chiến tranh', 'Chính kịch', 'Drama',
+    const gernes = ['Anime', 'Âm nhạc', 'Bí ẩn', 'Chiến tranh', 'Chính kịch', 'Drama',
         'Hoạt hình', 'Gia đình', 'Giật Gân', 'Hài', 'Hành động', 'Viễn tưởng', 'Kinh dị',
         'Lãng mạn', 'Phiêu lưu', 'Tài liệu', 'Tâm lí'];
 
@@ -29,7 +29,7 @@ function Menubar() {
         <>
             <div className="menubar-container">
                 <div className="menu-list">
-                    {gerne.map((item, index) => {
+                    {gernes.map((item, index) => {
                         return (
                             <p className={state.gerne.includes(item) ? "menu-items active-section" : "menu-items"}
                                 onClick={(event) => handleChosenGerne(event)}

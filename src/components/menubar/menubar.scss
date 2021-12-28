@@ -4,6 +4,11 @@
     height: calc(100vh - 50px);
     background-color: white;
     opacity: 0.75;
+    -moz-user-select: none;  
+    -webkit-user-select: none;  
+    -ms-user-select: none;  
+    -o-user-select: none;  
+    user-select: none;
 
     overflow-y: scroll;
 

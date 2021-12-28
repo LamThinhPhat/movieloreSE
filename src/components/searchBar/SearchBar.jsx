@@ -10,7 +10,8 @@ function SearchBar() {
     const handleSeachMovies = (event) => {
         if (event.key === 'Enter') {
             if (event.target.value !== '') dispatch(actions.searchForMovies(event.target.value));
-            else dispatch(actions.noSearch())
+            else dispatch(actions.noSearch());
+            event.target.value = '';
         }
     }
 

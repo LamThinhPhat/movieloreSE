@@ -1,10 +1,11 @@
 .home-background {
     position: relative;
-    background-image: url('https://images4.alphacoders.com/997/997210.jpg');
-    height: 100%;
+    background-image: url('https://ecdn.game4v.com/g4v-content/uploads/2021/10/18214128/game4v-Elden-Ring-3-1634568087-44.jpg');
+    height: 100vh;
     background-position: center;
     background-repeat: no-repeat;
     background-size: cover;
+    overflow: hidden;
 
     .home-container {
         margin-top: 50px;
