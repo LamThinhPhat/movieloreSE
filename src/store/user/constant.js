@@ -4,3 +4,6 @@ export const STORE_NEW_INFORMATION = 'store_new_information';
 export const CHANGE_NEW_PASSWORD = 'change_new_password';
 export const ADD_TO_FAVORITE = 'add_to_favorite';
 export const REMOVE_FROM_FAVORITE = 'remove_from_favorite';
+
+
+export const READ_ALL_NOTIFICATION = 'read_all_notification';

@@ -141,7 +141,7 @@ function DetailPost() {
             </div>}
 
             <div className="comment-section">
-                <CommentList comments={comments} reviewID={movie?._id} />
+                <CommentList comments={comments} movie={movie} />
             </div>
 
             {isShowTrailer && <div className="trailer-screen" onClick={handleCloseTrailer}>

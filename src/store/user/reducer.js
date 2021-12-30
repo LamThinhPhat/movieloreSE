@@ -1,6 +1,6 @@
 import {
     STORE_LOGIN_ACCOUNT, LOGOUT_ACCOUNT, STORE_NEW_INFORMATION, CHANGE_NEW_PASSWORD, ADD_TO_FAVORITE,
-    REMOVE_FROM_FAVORITE
+    REMOVE_FROM_FAVORITE, READ_ALL_NOTIFICATION
 } from './constant';
 
 const initState = {
@@ -9,6 +9,7 @@ const initState = {
     email: null,
     password: null,
     favorite: [],
+    notification: [],
     role: false
 }
 
@@ -22,14 +23,17 @@ function reducer(state, action) {
                 password: action.payload.password,
                 role: action.payload.role,
                 favorite: action.payload.favorite,
+                notification: action.payload.notification
             }
         case LOGOUT_ACCOUNT:
             return {
+                id: null,
                 name: null,
                 email: null,
                 password: null,
                 role: false,
                 favorite: [],
+                notification: [],
             }
         case STORE_NEW_INFORMATION:
             return {
@@ -52,6 +56,12 @@ function reducer(state, action) {
             return {
                 ...state,
                 favorite: removeFav
+            }
+        }
+        case READ_ALL_NOTIFICATION: {
+            return {
+                ...state,
+                notification: state.notification.map(item => ({ ...item, status: false }))
             }
         }
         default:

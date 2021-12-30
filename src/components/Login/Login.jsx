@@ -37,7 +37,12 @@ function Login() {
                     history.goBack();
                 }
             })
-            .catch(error => console.log(error))
+            .catch(error => {
+                console.log(error)
+                setIsLoading(false);
+                setWarn('Lỗi hệ thống, mời thử lại');
+                setTimeout(() => setWarn(''), 3000);
+            })
     }
 
     return (

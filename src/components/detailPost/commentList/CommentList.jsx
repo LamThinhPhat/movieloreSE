@@ -23,7 +23,7 @@ function CommentList(props) {
     const [isLoadingBtn, setIsLoadingBtn] = useState(false);
 
     const [newComment, setNewCommnet] = useState({
-        reviewID: props.reviewID,
+        reviewID: props.movie?._id,
         userID: userState.id,
         name: userState.name,
         content: '',
@@ -54,7 +54,7 @@ function CommentList(props) {
 
     const handleReplyComment = (parentID, content) => {
         const reply = {
-            reviewID: props.reviewID,
+            reviewID: props.movie?._id,
             userID: userState.id,
             name: userState.name,
             content: content,
@@ -70,6 +70,18 @@ function CommentList(props) {
             .catch(err => {
                 console.log(err);
             })
+
+        const notic = {
+            content: `${userState.name} vừa trả lời tin nhắn của bạn tại bài viết "${props.movie.name}"`,
+            status: true
+        }
+        axios.post(`https://movielore-database.herokuapp.com/user/notification/${parentID}`, notic)
+            .then(res => {
+                if (!res.data.error) {
+
+                }
+            })
+            .catch(err => console.log(err))
     }
 
     const handleDeleteComment = (id) => {
