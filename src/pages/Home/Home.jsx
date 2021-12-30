@@ -9,6 +9,8 @@ import Register from "../../components/register/Register"
 import Profile from "../../components/profile/Profile"
 import EditPost from "../../components/editPost/EditPost"
 import OtherProfile from "../../components/otherProfile/OtherProfile"
+// import 'bootstrap/dist/css/bootstrap.min.css'
+// import { Col } from 'react-bootstrap'
 import {
     BrowserRouter as Router,
     Switch,
@@ -26,8 +28,12 @@ function Home() {
                     <div className="home-background">
                         <Topbar />
                         <div className="home-container">
+                            {/* <Col md={3} xs={0}><Menubar /></Col>
+                            <Col><Review /></Col> */}
+
                             <Menubar />
                             <Review />
+
                         </div>
                     </div>
                 </Route>
