@@ -1,5 +1,0 @@
-export { default as MovieProvider } from './movie/MovieProvider'
-export { default as UserProvider } from './user/UserProvider'
-export { default as Context } from './Context'
-export * as movieActions from './movie/actions'
-export * as userActions from './user/actions'
