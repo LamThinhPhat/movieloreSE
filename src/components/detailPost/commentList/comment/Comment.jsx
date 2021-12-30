@@ -3,6 +3,7 @@ import { useState, useContext } from 'react'
 import 'bootstrap/dist/css/bootstrap.min.css'
 import { Context } from '../../../../store'
 import axios from 'axios';
+import { Link } from 'react-router-dom';
 
 
 function Comment(props) {
@@ -33,7 +34,8 @@ function Comment(props) {
         axios.post('https://movielore-database.herokuapp.com/comment/update', oldComment)
             .then(res => {
                 if (res.data.error === 0) {
-                    props.comment.content = updateComment;
+                    if (props?.comment) props.comment.content = updateComment;
+                    if (props?.reply) props.comment.content = updateComment;
                     setIsEdit(false);
                     setIsLoadingBtn(false);
                 }
@@ -61,7 +63,7 @@ function Comment(props) {
                         {/* other name */}
                         {authenticate !== 'owner' &&
                             <div className='mb-1'>
-                                <span className='comment-username'>{props.comment.name}</span>
+                                <Link to={`/other/${props.comment.userID}`} className='comment-username'>{props.comment.name}</Link>
                             </div>}
 
                         {/* owner name */}
@@ -86,7 +88,7 @@ function Comment(props) {
                             <>
                                 <textarea value={updateComment} onChange={e => setUpdateComment(e.target.value)}></textarea>
                                 <div>
-                                    <button className='comment-btn' onClick={isLoadingBtn ? null : handleReplyComment}>{isLoadingBtn ? 'Đang lưu...' : 'Lưu'}</button>
+                                    <button className='comment-btn' onClick={isLoadingBtn ? null : handleSaveUpdate}>{isLoadingBtn ? 'Đang lưu...' : 'Lưu'}</button>
                                     <button className='comment-btn cancel-btn' onClick={isLoadingBtn ? null : (() => setIsEdit(false))}>Hủy</button>
                                 </div>
                                 <div className="clearfix"></div>
@@ -140,7 +142,7 @@ function Comment(props) {
                         {/* other name */}
                         {authenticate !== 'owner' &&
                             <div className='mb-1'>
-                                <span className='comment-username'>{props.reply.name}</span>
+                                <Link to={`/other/${props.reply.userID}`} className='comment-username' >{props.reply.name}</Link>
                                 <div className="clearfix"></div>
                             </div>}
 
@@ -180,7 +182,7 @@ function Comment(props) {
 
                                 {showRootOption &&
                                     <ul className='child-item-dropbox'>
-                                        <li className='dropbox-item' onClick={() => props.handleDeleteComment(props.comment._id)}>Xóa</li>
+                                        <li className='dropbox-item' onClick={() => props.handleDeleteComment(props.reply._id)}>Xóa</li>
                                     </ul>}
                             </div>
                         }

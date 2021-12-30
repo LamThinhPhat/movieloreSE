@@ -13,6 +13,11 @@ function PostList(props) {
             const movie = state.movies.find(item => item._id === userState.favorite[i])
             movies.push(movie);
         }
+    } else if (props.otherInfo) {
+        for (let i = 0; i < props.otherInfo.favorite.length; i++) {
+            const movie = state.movies.find(item => item._id === props.otherInfo.favorite[i])
+            movies.push(movie);
+        }
     } else movies = state.filter;
 
     return (
@@ -40,7 +45,7 @@ function PostList(props) {
                             )
                         })}
                     </div>
-                    : <div className="post-list-annouce">{props.favorite ? 'Danh sách đang trống :(' : 'Chưa có phim bạn đang tìm :('}</div>
+                    : <div className="post-list-annouce">{props.favorite || props.otherInfo ? 'Danh sách đang trống :(' : 'Chưa có phim bạn đang tìm :('}</div>
             }
         </>
     )

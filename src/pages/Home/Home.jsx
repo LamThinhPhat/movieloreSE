@@ -8,11 +8,13 @@ import Login from '../../components/login/Login'
 import Register from "../../components/register/Register"
 import Profile from "../../components/profile/Profile"
 import EditPost from "../../components/editPost/EditPost"
+import OtherProfile from "../../components/otherProfile/OtherProfile"
 import {
     BrowserRouter as Router,
     Switch,
     Route,
 } from 'react-router-dom'
+
 
 function Home() {
 
@@ -54,6 +56,13 @@ function Home() {
                         <div className="home-container">
                             <EditPost />
                         </div>
+                    </div>
+                </Route>
+
+                <Route path="/other/:id">
+                    <div className="home-background">
+                        <Topbar />
+                        <OtherProfile />
                     </div>
                 </Route>
 

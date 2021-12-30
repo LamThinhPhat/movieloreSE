@@ -1,11 +1,10 @@
 import './information.scss'
-// import { ArrowUpward } from '@material-ui/icons'
 import { Context, userActions } from '../../../store';
 import { useContext, useState } from 'react'
 import axios from 'axios';
 
 
-function Information() {
+function Information(props) {
     const { userState, userDispatch } = useContext(Context.userContext);
     const [newInfo, setNewInfo] = useState({
         name: userState.name,
@@ -52,7 +51,7 @@ function Information() {
                 <label>Chức vụ:</label>
             </div>
 
-            {isEdit ?
+            {isEdit &&
                 <form onSubmit={e => handleChangeInfo(e)}>
                     <div className="information-content">
                         <input type="text" value={newInfo.name} onChange={(e) => setNewInfo({ ...newInfo, name: e.target.value })} required />
@@ -64,12 +63,15 @@ function Information() {
                     {isLoading ? <div className="loader"></div>
                         :
                         <>
-
                             <div className="warning-message">{warn}</div>
                             <input type="button" value="Hủy" className='information-toggle-button cancel-change' onClick={handleBack} />
-                            <input type="submit" value="Lưu" className='information-toggle-button change-info' /></>}
+                            <input type="submit" value="Lưu" className='information-toggle-button change-info' />
+                        </>
+                    }
                 </form>
-                :
+            }
+
+            {!isEdit &&
                 <>
                     <div className="information-content">
                         <div>{userState.name}</div>

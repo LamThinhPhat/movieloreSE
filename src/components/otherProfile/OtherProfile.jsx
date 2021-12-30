@@ -1,12 +1,12 @@
-import './profile.scss'
+import './otherProfile.scss'
 import { useState, useEffect } from 'react';
-import { useLocation, useParams } from 'react-router-dom'
+import { useParams } from 'react-router-dom'
 import Information from './information/Information';
-import Password from './password/Password';
+
 import Favorite from './favorite/Favorite';
 import axios from 'axios';
 
-function Profile(props) {
+function OtherProfile(props) {
     const { id } = useParams();
     const [section, setSection] = useState('');
     const [otherInfo, setOtherInfo] = useState({
@@ -16,11 +16,8 @@ function Profile(props) {
         role: null,
         favorite: []
     });
-    const location = useLocation();
+
     let request = 'information';
-    if (!id) {
-        request = location?.state?.request;
-    }
 
     useEffect(() => {
         setSection(request);
@@ -47,7 +44,6 @@ function Profile(props) {
 
             <div className="profile-content">
                 {section === 'information' && <Information otherInfo={otherInfo} />}
-                {section === 'password' && <Password />}
                 {section === 'favorite' && <Favorite otherInfo={otherInfo} />}
             </div>
 
@@ -55,4 +51,4 @@ function Profile(props) {
     )
 }
 
-export default Profile;
+export default OtherProfile;

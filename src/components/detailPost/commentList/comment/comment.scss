@@ -10,7 +10,8 @@
 
     .root-comment {
         .owner-username {
-            color:rgb(116, 25, 25);
+            color:rgb(116, 25, 25) !important;
+            cursor: auto !important;
         }
 
         textarea {
@@ -79,7 +80,9 @@
             margin-bottom: 0.2em;
             font-weight: bold;
             font-size: 1.2em;
+            text-decoration: none;
             cursor: pointer;
+            color: black;
     
             &:hover {
                 color: rgb(116, 25, 25);
@@ -119,7 +122,8 @@
 
     .child-comment {
         .owner-username {
-            color:rgb(116, 25, 25);
+            color:rgb(116, 25, 25) !important;
+            cursor: auto !important;
         }
 
         textarea {
@@ -158,6 +162,8 @@
             font-size: 1.2em;
             cursor: pointer;
             float: right;
+            text-decoration: none;
+            color: black;
 
             &:hover {
                 color: rgb(116, 25, 25);

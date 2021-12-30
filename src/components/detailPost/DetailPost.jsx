@@ -129,7 +129,7 @@ function DetailPost() {
                             return (
                                 <div key={index} className="review-section">
                                     <h2 className="review-title">{`${index + 1}) ${item.section}`}</h2>
-                                    {item.content.split('\\r\\n').map((line, i) => <p className="review-content" key={i}>{line}</p>)}
+                                    {item.content.split('\n').map((line, i) => <p className="review-content" key={i}>{line}</p>)}
                                 </div>
                             )
                         })}
