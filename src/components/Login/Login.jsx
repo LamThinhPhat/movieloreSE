@@ -34,7 +34,7 @@ function Login() {
                     return;
                 } else {
                     userDispatch(userActions.StoreAccount(res.data));
-                    history.push('/')
+                    history.goBack();
                 }
             })
             .catch(error => console.log(error))
@@ -60,7 +60,7 @@ function Login() {
                     :
                     <div className="login-button">
                         <button onClick={() => history.goBack()}>Quay lại</button>
-                        <button value="Submit">Đăng nhập</button>
+                        <button value="submit">Đăng nhập</button>
                     </div>}
             </form>
             <p>Hoặc</p>

@@ -1,39 +1,33 @@
 import './profile.scss'
-import { useState } from 'react';
-import { Link, Switch, Route, BrowserRouter, useLocation } from 'react-router-dom'
+import { useState, useEffect } from 'react';
+import { useLocation } from 'react-router-dom'
 import Information from './information/Information';
 import Password from './password/Password';
 import Favorite from './favorite/Favorite';
 
 function Profile(props) {
-    const l = useLocation().pathname;
-    const [location, setLocation] = useState(l);
+    const [section, setSection] = useState('');
+    const location = useLocation();
+    const { request } = location.state;
 
+    useEffect(() => {
+        setSection(request);
+    }, [request])
     return (
         <div className='profile-container'>
-            <BrowserRouter>
-                <div className="profile-menu">
-                    <Link to='/profile' className={location === '/profile' ? 'profile-menu-item active' : 'profile-menu-item'} onClick={e => setLocation('/profile')}>Tài khoản</Link>
-                    <Link to='/profile/password' className={location === '/profile/password' ? 'profile-menu-item active' : 'profile-menu-item'} onClick={e => setLocation('/profile/password')}>Mật khẩu</Link>
-                    <Link to='/profile/favorite' className={location === '/profile/favorite' ? 'profile-menu-item active' : 'profile-menu-item'} onClick={e => setLocation('/profile/favorite')}>Yêu thích</Link>
-                </div>
 
-                <div className="profile-content">
-                    <Switch>
-                        <Route path="/profile/password">
-                            <Password />
-                        </Route>
+            <div className="profile-menu">
+                <div className={section === 'information' ? 'profile-menu-item active' : 'profile-menu-item'} onClick={e => setSection('information')}>Tài khoản</div>
+                <div className={section === 'password' ? 'profile-menu-item active' : 'profile-menu-item'} onClick={e => setSection('password')}>Mật khẩu</div>
+                <div className={section === 'favorite' ? 'profile-menu-item active' : 'profile-menu-item'} onClick={e => setSection('favorite')}>Yêu thích</div>
+            </div>
 
-                        <Route path="/profile/favorite">
-                            <Favorite />
-                        </Route>
+            <div className="profile-content">
+                {section === 'information' && <Information />}
+                {section === 'password' && <Password />}
+                {section === 'favorite' && <Favorite />}
+            </div>
 
-                        <Route path="/profile">
-                            <Information />
-                        </Route>
-                    </Switch>
-                </div>
-            </BrowserRouter>
         </div>
     )
 }

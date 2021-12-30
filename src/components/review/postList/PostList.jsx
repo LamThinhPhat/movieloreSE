@@ -3,9 +3,17 @@ import Post from "./post/Post"
 import { useContext } from 'react'
 import { Context } from '../../../store'
 
-function PostList() {
+function PostList(props) {
+
     const { state } = useContext(Context.movieContext);
-    let movies = state.isFinalFilter ? state.finalFilter : state.filter;
+    const { userState } = useContext(Context.userContext);
+    let movies = [];
+    if (props.favorite) {
+        for (let i = 0; i < userState.favorite.length; i++) {
+            const movie = state.movies.find(item => item._id === userState.favorite[i])
+            movies.push(movie);
+        }
+    } else movies = state.filter;
 
     return (
         <>
@@ -23,7 +31,7 @@ function PostList() {
                                     gerne={item.gerne.join(', ')}
                                     name={item.name}
                                     plot={item.plot}
-                                    poster={item.poster}
+                                    poster={item.poster.secure_url}
                                     rate={item.rate}
                                     releaseDate={item.releaseDate}
                                     review={item.review}
@@ -32,7 +40,7 @@ function PostList() {
                             )
                         })}
                     </div>
-                    : <div className="post-list-annouce">Chưa có phim bạn đang tìm :(</div>
+                    : <div className="post-list-annouce">{props.favorite ? 'Danh sách đang trống :(' : 'Chưa có phim bạn đang tìm :('}</div>
             }
         </>
     )

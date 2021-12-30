@@ -1,48 +1,45 @@
-import './addPost.scss'
-import { useState, useEffect, useContext } from 'react'
+import './editPost.scss'
+import { useParams } from 'react-router-dom'
+import { Context, movieActions } from '../../store'
+import { useState, useContext, useEffect } from 'react'
 import { Grade, MovieCreation } from '@material-ui/icons'
-import axios from 'axios'
 import { useHistory } from 'react-router-dom'
-import { Context } from '../../store'
-import { movieActions } from '../../store'
+import axios from 'axios'
 
 
-function AddPost() {
+function EditPost() {
     const gernes = ['Anime', 'Âm nhạc', 'Bí ẩn', 'Chiến tranh', 'Chính kịch', 'Drama',
         'Hoạt hình', 'Gia đình', 'Giật Gân', 'Hài', 'Hành động', 'Viễn tưởng', 'Kinh dị',
         'Lãng mạn', 'Phiêu lưu', 'Tài liệu', 'Tâm lí', 'Tội phạm'];
+
     const types = ['Mọi lứa tuổi', 'C13', 'C16', 'C18', 'R'];
 
-    const { dispatch } = useContext(Context.movieContext);
-
+    const { id } = useParams();
+    const history = useHistory();
+    const { state, dispatch } = useContext(Context.movieContext);
+    const movie = state.movies.find(item => item._id === id)
 
     const [isLoading, setIsLoading] = useState(false);
     const [poster, setPoster] = useState();
-    const [reviews, setReviews] = useState([{ section: '', content: '' }]);
+    const [reviews, setReviews] = useState(movie.review);
     const [errorMessage, setErrorMessage] = useState('');
-    const history = useHistory();
 
     const [data, setData] = useState({
-        name: '',
-        trailer: '',
-        country: '',
-        releaseDate: '',
-        time: '',
-        type: '',
-        director: '',
-        author: '',
-        cast: '',
-        gerne: [],
-        plot: '',
-        review: [],
-        rate: ''
+        name: movie.name,
+        trailer: movie.trailer,
+        country: movie.country,
+        releaseDate: movie.releaseDate,
+        time: movie.time,
+        type: movie.type,
+        director: movie.director,
+        author: movie.author,
+        cast: movie.cast,
+        gerne: movie.gerne,
+        plot: movie.plot,
+        review: movie.review,
+        rate: movie.rate,
+        poster: movie.poster
     })
-
-    useEffect(() => {
-        return () => {
-            poster && URL.revokeObjectURL(poster.preview);
-        }
-    }, [poster])
 
     const handleChoosePoster = (e) => {
         if (e.target.files[0]) {
@@ -51,15 +48,6 @@ function AddPost() {
             setPoster(file);
             e.target.value = null;
         }
-    }
-
-    const handleChangeReview = (event, index) => {
-        const { name, value } = event.target;
-        const list = [...reviews];
-
-        list[index][name] = value;
-        setReviews(list);
-        setData({ ...data, review: list });
     }
 
     const handleAddReview = () => {
@@ -87,12 +75,27 @@ function AddPost() {
         setData({ ...data, gerne: temp });
     }
 
-    const handleSubmitAll = () => {
+    const handleChangeReview = (event, index) => {
+        const { name, value } = event.target;
+        const list = [...reviews];
+
+        list[index][name] = value;
+        setReviews(list);
+        setData({ ...data, review: list });
+    }
+
+    useEffect(() => {
+        return () => {
+            poster && URL.revokeObjectURL(poster.preview);
+        }
+    }, [poster])
+
+    const handleUpdateReview = (e) => {
+        e.preventDefault();
         setIsLoading(true);
         const values = Object.values(data);
         for (let i = 0; i < values.length; i++) {
             if ((typeof values[i] === 'string' && values[i] === '') || (typeof values[i] === 'object' && values[i].length === 0)) {
-                setIsLoading(false);
                 setErrorMessage('Vui lòng kiểm tra và điền đầy đủ thông tin');
                 setTimeout(() => {
                     setErrorMessage('');
@@ -102,56 +105,75 @@ function AddPost() {
         }
 
         const fullData = data;
+        fullData._id = movie._id;
 
-        // fullData.trailer = "https://www.youtube.com/embed/" + data.trailer + "?autoplay=1";
-
-        const fd = new FormData();
-        fd.append('file', poster)
-        fd.append('upload_preset', 'bspwbktq')
-        axios.post('https://api.cloudinary.com/v1_1/ducka9boe/image/upload', fd)
-            .then(res => {
-                fullData.poster = {
-                    public_id: res.data.public_id,
-                    secure_url: res.data.secure_url,
-                }
-            })
-            .then(() => {
-                axios({
-                    url: 'https://movielore-database.herokuapp.com',
-                    method: 'POST',
-                    data: fullData
+        if (poster) {
+            const fd = new FormData();
+            fd.append('file', poster)
+            fd.append('upload_preset', 'bspwbktq')
+            axios.post('https://api.cloudinary.com/v1_1/ducka9boe/image/upload', fd)
+                .then(res => {
+                    fullData.poster = {
+                        public_id: res.data.public_id,
+                        secure_url: res.data.secure_url,
+                    }
                 })
-                    .then(res => {
-                        setIsLoading(false);
-                        if (!res.data.error) {
-                            dispatch(movieActions.addNewReview(res.data.newMovie));
-                        } else {
-                            setErrorMessage('Tạo bài không thành công');
-                            setTimeout(() => {
-                                setErrorMessage('');
-                            }, 3000);
-                        }
+                .then(() => {
+                    axios({
+                        url: `https://movielore-database.herokuapp.com/update/${movie._id}`,
+                        method: 'POST',
+                        data: fullData
                     })
-                    .then(history.push('/'))
-                    .catch(error => {
-                        console.log(error);
-                        setIsLoading(false);
-                    })
+                        .then(res => {
+                            setIsLoading(false);
+                            if (res.data.error === 0) {
+                                dispatch(movieActions.updateReview(fullData));
+                            } else {
+                                setErrorMessage('Chỉnh sửa không thành công');
+                                setTimeout(() => {
+                                    setErrorMessage('');
+                                }, 3000);
+                            }
+                        })
+                        .then(history.push(`/detail/${movie._id}`))
+                        .catch(error => {
+                            setIsLoading(false);
+                            console.log(error)
+                        })
+                })
+                .catch(err => console.log(err))
+        } else {
+            axios({
+                url: `https://movielore-database.herokuapp.com/update/${movie._id}`,
+                method: 'POST',
+                data
             })
-            .catch(err => {
-                console.log(err);
-                setIsLoading(false);
-            })
+                .then(res => {
+                    setIsLoading(false);
+                    if (res.data.error === 0) {
+                        dispatch(movieActions.updateReview({ ...data, _id: movie._id }));
+                    } else {
+                        setErrorMessage('Chỉnh sửa không thành công');
+                        setTimeout(() => {
+                            setErrorMessage('');
+                        }, 3000);
+                    }
+                })
+                .then(history.push(`/detail/${movie._id}`))
+                .catch(error => {
+                    setIsLoading(false);
+                    console.log(error)
+                })
+        }
     }
 
     return (
-
-        <div className="add-post-container">
+        <div className="edit-post-container">
             <div className="create-container">
-                <form onSubmit={e => handleSubmitAll(e)}>
+                <form onSubmit={e => handleUpdateReview(e)}>
                     <div className="header-title">
                         <MovieCreation className="header-title-icon" />
-                        VIẾT REVIEW
+                        CHỈNH SỬA
                     </div>
 
                     <div className="first-block">
@@ -176,7 +198,9 @@ function AddPost() {
                                 {types.map((type, index) => {
                                     return (
                                         <span key={index} className="first-type-tags">
-                                            <input id={'first-type-' + index} type="radio" name="types" value={type} selected={data.type} onChange={event => setData({ ...data, type: event.target.value })} />
+                                            {data.type === type ? <input id={'first-type-' + index} type="radio" name="types" value={type} defaultChecked onChange={event => setData({ ...data, type: event.target.value })} />
+                                                :
+                                                <input id={'first-type-' + index} type="radio" name="types" value={type} onChange={event => setData({ ...data, type: event.target.value })} />}
                                             <label htmlFor={'first-type-' + index} className="first-type-label">{type}</label>
                                         </span>
                                     )
@@ -188,8 +212,10 @@ function AddPost() {
                         {/* manipulate to send poster */}
                         <div className="poster-block">
                             <label htmlFor="poster-upload" className="poster-upload-btn">Chọn ảnh</label>
-                            <input type="file" id="poster-upload" accept="image/*" onChange={handleChoosePoster} style={{ display: "none" }} required autoComplete="on" />
-                            {poster && <img src={poster.preview} alt="poster" className="poster-upload-img" />}
+                            <input type="file" id="poster-upload" accept="image/*" onChange={handleChoosePoster} style={{ display: "none" }} autoComplete="on" />
+                            {poster ? <img src={poster.preview} alt="poster" className="poster-upload-img" />
+                                : <img src={data.poster.secure_url} alt="poster" className="poster-upload-img" />
+                            }
                         </div>
                     </div>
 
@@ -209,7 +235,11 @@ function AddPost() {
                         <div>
                             {gernes.map((gerne, index) => {
                                 return (
-                                    <span className="gerne-tag" key={index} name={gerne} onClick={event => handleChooseGerne(event)}>{gerne}</span>
+                                    <span key={index}>
+                                        {data.gerne.includes(gerne) ? <span className="gerne-tag gerne-active" name={gerne} onClick={event => handleChooseGerne(event)}>{gerne}</span>
+                                            :
+                                            <span className="gerne-tag" name={gerne} onClick={event => handleChooseGerne(event)}>{gerne}</span>}
+                                    </span>
                                 )
                             })}
                         </div>
@@ -250,15 +280,17 @@ function AddPost() {
 
                         {isLoading ? <div className="loader" ></div>
                             :
-                            <button className="submit-btn" value="Submit" type='submit' onClick={e => handleSubmitAll(e)}>ĐĂNG BÀI</button>}
+                            <div className='edit-btn-group'>
+                                <button className="btn btn-cancle" onClick={() => history.push(`/detail/${movie._id}`)}>Hủy</button>
+                                <button className="btn" type='submit'>Lưu</button>
+                            </div>}
                     </div>
 
 
                 </form>
             </div>
-        </div >
-
+        </div>
     )
 }
 
-export default AddPost;
+export default EditPost;

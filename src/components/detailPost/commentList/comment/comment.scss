@@ -1,0 +1,215 @@
+.comment-item {
+    margin: 1em 0;
+    
+    -moz-user-select: none;  
+    -webkit-user-select: none;  
+    -ms-user-select: none;  
+    -o-user-select: none;  
+    user-select: none;
+
+    .root-comment {
+        .owner-username {
+            color:rgb(116, 25, 25);
+        }
+
+        textarea {
+            width: 100%;
+            min-height: 7em;
+            border-radius: 1em;
+            padding: 0.5em 0.5em;
+            font-size: 1em;
+        }
+
+        .comment-btn {
+            border: none;
+            outline: none;
+            background-color: rgb(123, 163, 163);
+            min-width: 4.5em;
+            min-height: 2.5em;
+            float: right;
+            cursor: pointer;
+            border-radius: 1em;
+            font-size: 0.9em;
+    
+            &:hover {
+                color: rgba(255, 255, 255, 0.808);
+                opacity: 0.9;
+            }
+        }
+
+        .cancel-btn {
+            background-color: rgb(73, 73, 73);
+            color: rgb(219, 219, 219);
+            margin-right: 0.5em;
+        }
+
+        .reply-comment-btn {
+            border: none;
+            outline: none;
+            background-color: rgb(123, 163, 163);
+            min-width: 4.5em;
+            min-height: 2.5em;
+            cursor: pointer;
+            border-radius: 1em;
+            font-size: 0.9em;
+    
+            &:hover {
+                color: rgba(255, 255, 255, 0.808);
+                opacity: 0.9;
+            }
+        }
+
+        .reply-cancel-btn {
+            background-color: rgb(73, 73, 73);
+            color: rgb(219, 219, 219);
+            margin-left: 0.5em;
+        }
+
+
+        .list-comment-content {
+            padding: 0.5em 1em;
+            background-color: white;
+            border-radius: 1em;
+            display: inline-block;
+            position: relative;
+        }
+
+        .comment-username {
+            margin-bottom: 0.2em;
+            font-weight: bold;
+            font-size: 1.2em;
+            cursor: pointer;
+    
+            &:hover {
+                color: rgb(116, 25, 25);
+            }
+        }
+
+        .root-item-dropbox {
+            padding: 0;
+            list-style-type: none;
+            position: absolute;
+            left: 0.2em;
+            top: 2em;
+            border-radius: 10px;
+            background-color: rgb(79, 143, 143);
+            z-index: 1;
+    
+            .dropbox-item {
+                padding: 0.5em 0.5em;
+                text-align: center;
+                width: 6em;   
+                cursor: pointer;
+                border-bottom: 1px solid rgba(0, 0, 0, 0.267);
+
+                &:last-child {
+                    border-bottom-left-radius: 10px;
+                    border-bottom-right-radius: 10px;
+                }
+               
+    
+                &:hover {
+                    opacity: 0.7;
+                    color: white;
+                }
+            }
+        }
+    }
+
+    .child-comment {
+        .owner-username {
+            color:rgb(116, 25, 25);
+        }
+
+        textarea {
+            width: 100%;
+            min-height: 7em;
+            border-radius: 1em;
+            padding: 0.5em 0.5em;
+            font-size: 1em;
+        }
+
+        button {
+            border: none;
+            outline: none;
+            background-color: rgb(123, 163, 163);
+            min-width: 4.5em;
+            min-height: 2.5em;
+            cursor: pointer;
+            border-radius: 1em;
+            font-size: 0.9em;
+    
+            &:hover {
+                color: rgba(255, 255, 255, 0.808);
+                opacity: 0.9;
+            }
+        }
+
+        .cancle-btn {
+            background-color: rgb(73, 73, 73);
+            color: rgb(219, 219, 219);
+            margin-left: 0.5em;
+        }
+        
+        .comment-username {
+            margin-bottom: 0.2em;
+            font-weight: bold;
+            font-size: 1.2em;
+            cursor: pointer;
+            float: right;
+
+            &:hover {
+                color: rgb(116, 25, 25);
+            }
+        }
+
+        .list-comment-content {
+            padding: 0.5em 1em;
+            background-color: white;
+            border-radius: 1em;
+            float: right;
+            position: relative;
+
+        
+            .child-item-dropbox {
+                padding: 0;
+                list-style-type: none;
+                position: absolute;
+                right: 0.2em;
+                top: 2em;
+                border-radius: 10px;
+                background-color: rgb(79, 143, 143);
+                z-index: 1;
+        
+                .dropbox-item {
+                    padding: 0.5em 0.5em;
+                    text-align: center;
+                    width: 6em;   
+                    cursor: pointer;
+                    border-bottom: 1px solid rgba(0, 0, 0, 0.267);
+
+                    &:last-child {
+                        border-bottom-left-radius: 10px;
+                        border-bottom-right-radius: 10px;
+                    }
+        
+                    &:hover {
+                        opacity: 0.7;
+                        color: white;
+                    }
+                }
+            }
+        }
+    }
+
+    .feature-notice {
+        &:hover {
+            background-color: rgb(192, 192, 192);
+        }
+    }
+    
+    .clearfix {
+        clear: both;
+    }
+}
+
