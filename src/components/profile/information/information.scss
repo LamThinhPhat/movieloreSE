@@ -1,0 +1,85 @@
+.information-container {
+
+    h1 {
+        text-align: center;
+        font-size: 3em;
+        margin-top: 1em;
+    }
+
+    .information-label{
+        float: left;
+        margin-left: 10em;
+
+        label {
+            margin: 1em 2em;
+            font-size: 2em;
+            display: block;
+            font-weight: bold;
+        }
+    }
+
+    .information-content {
+        float: left;
+        
+        div {
+            font-size: 2em;
+            margin: 1em 0;
+
+            span {
+                margin-left: 0.3em;
+                background-color: rgba(0, 0, 0, 0.692);
+                color: rgba(255, 255, 255, 0.856);
+                cursor: pointer;
+                width: 10px;
+                
+                &:hover {
+                    opacity: 0.7;
+                }
+            }
+        }
+
+        input {
+            outline: none;
+            border: none;
+            font-size: 2em;
+            margin: 0.9em 0;
+            display: block;
+            border-radius: 2px;
+        }
+
+    }
+
+    .information-toggle-button {
+        outline: none;
+        border: none;
+        min-width: 8em;
+        min-height: 3em;
+        font-size: 1em;
+        margin-left: 35em;
+        border-radius: 5px;
+        cursor: pointer;
+        color: rgb(233, 233, 233);
+
+        &:hover {
+            opacity: 0.6;
+        }
+    }
+
+    .cancel-change {
+        background-color: rgb(0, 0, 0);
+    }
+
+    .change-info {
+        background-color: rgb(3, 83, 87);
+        margin-left: 1em;
+    }
+
+    .start-change {
+        margin-left: 44em;
+        background-color: rgb(0, 0, 0);
+    }
+}
+
+.clearfix {
+    clear:both;
+}

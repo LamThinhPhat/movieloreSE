@@ -1,0 +1,142 @@
+.topbar-container {
+    display: flex;
+    align-items: center;
+    width: 100%;
+    height: 50px;
+    background-color: #917137;
+    top: 0;
+    left: 0;
+    position: fixed;
+    z-index: 9999;
+
+    .left-topbar {
+        flex: 3; 
+        .main-logo {
+            font-size: 30px;
+            margin-left: 7em;
+            color: rgb(212, 212, 212);
+            font-weight: 550;
+            cursor: pointer;
+            text-decoration: none;
+
+            &:hover {
+                opacity: 0.7;
+            }
+        } 
+    }
+
+    .middle-topbar {
+        flex: 4;
+        margin-left: 2em;
+    }
+
+    .right-topbar {
+        flex: 4;
+        display: flex;
+        align-items: center;
+
+        .topbar-icon {
+            margin: 0 1em;
+            position: relative;
+            cursor: pointer;
+
+            .add-icon {
+                margin-left: 3em;
+                color: black;
+
+                &:hover {
+                    color: white;
+                }
+            }
+            
+            &:hover {
+                color: white;
+            }
+
+            .topbar-icon-badge {
+                position: absolute;
+                width: 1em;
+                height: 1em;
+                font-size: 1em;
+                background-color: red;
+                color: white;
+                border-radius: 50%;
+                display: flex;
+                justify-content: center;
+                align-items: center;
+                top: -5px;
+                right: -5px;
+            }
+        }
+
+        .notic-icon {
+            margin-left: 5em;
+        }
+
+        .topbar-login {
+            margin-left: 1em;
+            cursor: pointer;
+            font-size: 1.3em;
+            display: flex;
+            align-items: center;
+
+            &:hover {
+                color: rgba(255, 255, 255, 0.7);
+                .topbar-login-dropbox {
+                    display: block !important;
+                }
+            }
+
+            .topbar-user-name {
+                margin-left: 0.2em;
+            }
+
+            .topbar-user-icon {
+                font-size: 1.6em;
+            }
+
+            .topbar-login-dropbox {
+                position: absolute;
+                background-color: #917137;
+                top: 2.2em;
+                right: 13.2em;
+                display: none;
+                color: black !important;
+                list-style-type: none;
+    
+                .topbar-dropbox-item {
+                    display: block;
+                    color: black;
+                    text-decoration: none;
+                    padding: 0.7em 0.8em;
+                    border-bottom: 1px solid black;
+                    cursor: pointer;
+
+                    &:hover {
+                        color: white;
+                    }
+                }
+    
+                .topbar-dropbox-item:hover {
+                    opacity: 0.5;
+                }
+            }
+        }
+
+        .topbar-register {
+            margin-left: 6em;
+            cursor: pointer;
+            font-size: 1.3em;
+            
+            .topbar-register-title {
+                text-decoration: none;
+                color: black;
+
+                &:hover {
+                    color: rgba(255, 255, 255, 0.7);
+                }
+            }    
+        }
+    }
+}
+
