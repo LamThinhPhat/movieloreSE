@@ -11,12 +11,12 @@ function PostList(props) {
     if (props.favorite) {
         for (let i = 0; i < userState.favorite.length; i++) {
             const movie = state.movies.find(item => item._id === userState.favorite[i])
-            movies.push(movie);
+            if (movie) movies.push(movie);
         }
     } else if (props.otherInfo) {
         for (let i = 0; i < props.otherInfo.favorite.length; i++) {
             const movie = state.movies.find(item => item._id === props.otherInfo.favorite[i])
-            movies.push(movie);
+            if (movie) movies.push(movie);
         }
     } else movies = state.filter;
 
