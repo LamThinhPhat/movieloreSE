@@ -56,7 +56,9 @@ function Information(props) {
                     <div className="information-content">
                         <input type="text" value={newInfo.name} onChange={(e) => setNewInfo({ ...newInfo, name: e.target.value })} required />
                         <input type="text" value={newInfo.email} onChange={(e) => setNewInfo({ ...newInfo, email: e.target.value })} required />
-                        <div>Thành viên</div>
+                        {userState.role ? <div>Quản trị viên</div>
+                            :
+                            <div>Thành viên</div>}
                     </div>
                     <div className="clearfix"></div>
 

@@ -23,7 +23,7 @@ function reducer(state, action) {
                 password: action.payload.password,
                 role: action.payload.role,
                 favorite: action.payload.favorite,
-                notification: action.payload.notification
+                notification: action.payload.notification.reverse()
             }
         case LOGOUT_ACCOUNT:
             return {

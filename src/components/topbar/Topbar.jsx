@@ -5,7 +5,7 @@ import { Link } from 'react-router-dom'
 import { useContext } from "react"
 import { Context, movieActions } from "../../store"
 import { userActions } from '../../store'
-import { useState } from 'react'
+import { useState, useEffect } from 'react'
 import axios from 'axios'
 import 'bootstrap/dist/css/bootstrap.min.css'
 import { Col } from 'react-bootstrap'
@@ -16,6 +16,9 @@ function Topbar() {
     const { userState, userDispatch } = useContext(Context.userContext);
 
     const [isShowNoticfication, setIsShowNotification] = useState(false);
+
+    const [unread, setUnread] = useState(0);
+
 
     const handleResetPost = () => {
         dispatch(movieActions.resetPostList());
@@ -33,6 +36,7 @@ function Topbar() {
                     .then(res => {
                         if (res.data.error === 0) {
                             userDispatch(userActions.readAllNotification());
+                            setUnread(0);
                             return;
                         }
                     })
@@ -43,6 +47,14 @@ function Topbar() {
     }
 
     const handleShowNotification = () => setIsShowNotification(true)
+
+    useEffect(() => {
+        let amount = 0;
+        userState.notification.forEach(item => {
+            if (item.status) amount++;
+        })
+        setUnread(amount);
+    }, [userState.notification])
 
     return (
         <div className="topbar-container">
@@ -64,8 +76,9 @@ function Topbar() {
                         <Link to="/add" className="add-icon"><PostAdd /></Link>
                     </div>}
                     {userState.name && <div className={userState.role ? "topbar-icon" : "topbar-icon notic-icon"}>
-                        <Notifications className={isShowNoticfication ? 'notification-icon white-notification' : 'notification-icon'} tabIndex={0} onClick={isShowNoticfication ? handleCloseNotification : handleShowNotification} onBlur={() => handleCloseNotification} />
-                        <span className="topbar-icon-badge" onClick={isShowNoticfication ? handleCloseNotification : handleShowNotification}>2</span>
+                        <Notifications className={isShowNoticfication || unread > 0 ? 'notification-icon white-notification' : 'notification-icon'} tabIndex={0} onClick={isShowNoticfication ? handleCloseNotification : handleShowNotification} onBlur={() => handleCloseNotification} />
+                        {unread > 0 &&
+                            <span className="topbar-icon-badge" onClick={isShowNoticfication ? handleCloseNotification : handleShowNotification}>{unread}</span>}
 
                         {/* dropbox notification */}
                         {isShowNoticfication &&
