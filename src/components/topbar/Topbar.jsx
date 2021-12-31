@@ -98,16 +98,19 @@ function Topbar() {
 
                     {userState.name ?
                         <div className="topbar-login">
-                            <span><Face className="topbar-user-icon" /></span>
-                            <span className="topbar-user-name">{userState.name}</span>
+                            <span>
+                                <Face className="topbar-user-icon" />
+                                {/* dropbox */}
+                                <div className="topbar-login-dropbox">
+                                    <Link to={{ pathname: '/profile', state: { request: 'information' } }} className="topbar-dropbox-item">Tài khoản</Link>
+                                    <Link to={{ pathname: '/profile', state: { request: 'password' } }} className="topbar-dropbox-item">Mật khẩu</Link>
+                                    <Link to={{ pathname: '/profile', state: { request: 'favorite' } }} className="topbar-dropbox-item">Yêu thích</Link>
+                                    <Link to='#' className="topbar-dropbox-item" onClick={handleLogOut}>Đăng xuất</Link>
+                                </div>
+                            </span>
+                            <span className="topbar-user-name">{userState.name}   </span>
 
-                            {/* dropbox */}
-                            <div className="topbar-login-dropbox">
-                                <Link to={{ pathname: '/profile', state: { request: 'information' } }} className="topbar-dropbox-item">Tài khoản</Link>
-                                <Link to={{ pathname: '/profile', state: { request: 'password' } }} className="topbar-dropbox-item">Mật khẩu</Link>
-                                <Link to={{ pathname: '/profile', state: { request: 'favorite' } }} className="topbar-dropbox-item">Yêu thích</Link>
-                                <Link to='#' className="topbar-dropbox-item" onClick={handleLogOut}>Đăng xuất</Link>
-                            </div>
+
                         </div>
                         :
                         <div className="topbar-register">
