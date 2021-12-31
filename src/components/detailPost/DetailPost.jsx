@@ -9,11 +9,13 @@ import { Modal, Button } from 'react-bootstrap'
 import axios from 'axios'
 
 const formatDate = (movie) => {
-    const date = new Date(movie.releaseDate);
-    const day = ("0" + date.getDate()).slice(-2);
-    const month = ("0" + (date.getMonth() + 1)).slice(-2);
-    const year = date.getFullYear();
-    movie.formatReleaseDate = day + '/' + month + '/' + year;
+    if (movie) {
+        const date = new Date(movie.releaseDate);
+        const day = ("0" + date.getDate()).slice(-2);
+        const month = ("0" + (date.getMonth() + 1)).slice(-2);
+        const year = date.getFullYear();
+        movie.formatReleaseDate = day + '/' + month + '/' + year;
+    }
     return movie;
 }
 
@@ -43,7 +45,6 @@ function DetailPost() {
                     dispatch(movieActions.deleteReview(movie._id));
                 } else return;
             })
-            .then(setIsLoadingBtn(true))
             .then(() => history.push('/'))
             .catch(err => console.log(err))
     }

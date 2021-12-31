@@ -63,7 +63,7 @@ function Register() {
                     setTimeout(() => setWarn(''), 3000);
                     return;
                 } else {
-                    history.push('/login')
+                    history.goBack();
                 }
             })
             .catch(error => console.log(error))

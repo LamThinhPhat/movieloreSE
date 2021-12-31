@@ -88,7 +88,7 @@ function CommentList(props) {
         axios.delete(`https://movielore-database.herokuapp.com/comment/${id}`)
             .then(res => {
                 if (res.data.error === 0) {
-                    const newList = comments.filter(item => item._id !== id);
+                    const newList = comments.filter(item => (item._id !== id && item.parentID !== id))
                     setComments(newList);
                 }
             })
