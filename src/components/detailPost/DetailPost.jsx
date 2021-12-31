@@ -8,12 +8,22 @@ import 'bootstrap/dist/css/bootstrap.min.css'
 import { Modal, Button } from 'react-bootstrap'
 import axios from 'axios'
 
+const formatDate = (movie) => {
+    const date = new Date(movie.releaseDate);
+    const day = ("0" + date.getDate()).slice(-2);
+    const month = ("0" + (date.getMonth() + 1)).slice(-2);
+    const year = date.getFullYear();
+    movie.formatReleaseDate = day + '/' + month + '/' + year;
+    return movie;
+}
+
 function DetailPost() {
     const { id } = useParams();
     const { state, dispatch } = useContext(Context.movieContext);
     const { userState, userDispatch } = useContext(Context.userContext);
     const history = useHistory();
-    const movie = state.movies.find(item => item._id === id);
+    const movie = formatDate(state.movies.find(item => item._id === id));
+
     const [isShowOption, setIsShowOption] = useState(false);
     const [isShowTrailer, SetIsShowTrailer] = useState(false);
     const [showModal, setShowModal] = useState(false);
@@ -99,7 +109,7 @@ function DetailPost() {
                         <div className="detail-director">Đạo diễn: {movie.director}</div>
                         <div className="detail-type">Nhãn: {movie.type}</div>
                         <div className="detail-time">Thời lượng: {movie.time}</div>
-                        <div className="detail-time">Công chiếu: {movie.releaseDate}</div>
+                        <div className="detail-time">Công chiếu: {movie.formatReleaseDate}</div>
                         <div className="detail-gerne">Thể loại: {movie.gerne.join(', ')}</div>
                         <div className="detail-cast">Diễn viên: {movie.cast}</div>
 
