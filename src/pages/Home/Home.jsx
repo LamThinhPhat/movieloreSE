@@ -68,14 +68,18 @@ function Home() {
                 <Route path="/other/:id">
                     <div className="home-background">
                         <Topbar />
-                        <OtherProfile />
+                        <div className="home-container">
+                            <OtherProfile />
+                        </div>
                     </div>
                 </Route>
 
                 <Route path="/profile">
                     <div className="home-background">
                         <Topbar />
-                        <Profile />
+                        <div className="home-container">
+                            <Profile />
+                        </div>
                     </div>
                 </Route>
 

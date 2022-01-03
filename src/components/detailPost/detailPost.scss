@@ -62,7 +62,7 @@
             left: 2em;
             top: 10em;
             width: 35em;
-            font-size: 16px; 
+            font-size: 1em; 
             
             
             .detail-name {
@@ -138,19 +138,16 @@
     }
     
     .second-block {
-        
         .detail-plot {
-    
             .detail-plot-header {
                 margin-top: 0.5em;
                 margin-left: 0.5em;
+                font-size: 2em;
             }
 
             .detail-plot-content {
                 margin: 1em 2em;
                 font-size: 1.2em;
-
-            
             }
 
             &:first-child > .detail-plot-content{
@@ -159,10 +156,12 @@
         }
 
         .detail-review {
+            margin-top: 2em;
 
             .detail-review-header{
                 margin-top: 0.5em;
                 margin-left: 0.5em;
+                font-size: 2em;
             }
 
             .review-section {
@@ -183,8 +182,7 @@
 
         .detail-rate {
             margin: 1em 0.5em;
-           
-
+            font-size: 2em;
             .detail-rate-icon {
                 color: rgb(117, 117, 24);
                 // font-size: 1em;

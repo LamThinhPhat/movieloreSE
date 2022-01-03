@@ -5,11 +5,19 @@
     background-position: center;
     background-repeat: no-repeat;
     background-size: cover;
-    overflow: hidden;
+    overflow:hidden;
 
     .home-container {
         margin-top: 50px;
+        margin-left: auto;
+        margin-right: auto;
         display: flex;
-        width: 100%;
+        width: 95em;
+    }
+}
+
+@media (max-width: 1400px) {
+    .home-background {
+        overflow-x: scroll;
     }
 }
