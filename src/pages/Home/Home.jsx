@@ -4,8 +4,8 @@ import Menubar from "../../components/menubar/Menubar"
 import Review from '../../components/review/Review'
 import AddPost from "../../components/addPost/AddPost"
 import DetailPost from "../../components/detailPost/DetailPost"
-import Login from '../../components/login/Login'
-import Register from "../../components/register/Register"
+import Login from '../../components/Login/Login'
+import Register from "../../components/Register/Register"
 import Profile from "../../components/profile/Profile"
 import EditPost from "../../components/editPost/EditPost"
 import OtherProfile from "../../components/otherProfile/OtherProfile"
